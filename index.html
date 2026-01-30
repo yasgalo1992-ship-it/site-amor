@@ -1,158 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Para minha princesa</title>
+<meta charset="UTF-8">
+<title>Pra você 💜</title>
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+<style>
+body {
+    margin: 0;
+    background: purple;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
 
-        body {
-            font-family: Arial;
-            background-color: purple;
-            color: white;
-            overflow: hidden;
-        }
+/* CAPA */
+#capa {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
 
-        /* TELA NEYMAR */
-        #inicio {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-        }
+#capa p {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
 
-        #inicio img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* CORAÇÃO PULSANDO */
+#coracao {
+    font-size: 80px;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
 
-        #inicio button {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
 
-        /* CONTEÚDO */
-        #conteudo {
-            display: none;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
+/* CONTEÚDO */
+#conteudo {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
 
-        /* FOTO ESQUERDA EM CIMA */
-        .foto-esq {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 48%;
-            border-radius: 15px;
-        }
+/* TEXTO DIGITANDO */
+#texto {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    z-index: 2;
+}
 
-        /* FOTO DIREITA EM BAIXO */
-        .foto-dir {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 48%;
-            border-radius: 15px;
-        }
+/* FOTO SLIDESHOW */
+#foto {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    border: 6px solid white;
+    box-shadow: 0 0 20px black;
+    border-radius: 10px;
+}
 
-        /* TEXTO NO MEIO */
-        .texto {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.5);
-            padding: 25px;
-            border-radius: 15px;
-            font-size: 24px;
-            text-align: center;
-        }
+/* GALERIA FINAL */
+#galeria {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 
-        /* CORAÇÕES */
-        .coracao {
-            position: fixed;
-            bottom: -20px;
-            font-size: 24px;
-            animation: subir 4s linear;
-        }
+.final {
+    width: 40%;
+    position: absolute;
+    border: 6px solid white;
+    box-shadow: 0 0 20px black;
+    border-radius: 10px;
+}
 
-        @keyframes subir {
-            from {
-                bottom: -20px;
-                opacity: 1;
-            }
-            to {
-                bottom: 110%;
-                opacity: 0;
-            }
-        }
-    </style>
+.final:nth-child(1) { top: 20px; left: 20px; }
+.final:nth-child(2) { top: 80px; right: 20px; }
+.final:nth-child(3) { bottom: 80px; left: 20px; }
+.final:nth-child(4) { bottom: 20px; right: 20px; }
+
+/* CORAÇÕES SUBINDO */
+.coracaoSubindo {
+    position: absolute;
+    bottom: 0;
+    font-size: 24px;
+    animation: subir 4s linear infinite;
+}
+
+@keyframes subir {
+    from { bottom: 0; opacity: 1; }
+    to { bottom: 100%; opacity: 0; }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- MÚSICA -->
-    <audio id="musica" src="penseemim.mp3" loop></audio>
+<!-- CAPA -->
+<div id="capa">
+    <p>clica ai et 💜</p>
+    <div id="coracao" onclick="entrar()">💜</div>
+</div>
 
-    <!-- TELA INICIAL -->
-    <div id="inicio">
-        <img src="botao.jpg">
-        <button onclick="mostrar()">clica ai et</button>
+<!-- CONTEÚDO -->
+<div id="conteudo">
+    <div id="texto"></div>
+
+    <img id="foto" src="foto1.jpg">
+
+    <div id="galeria">
+        <img src="foto1.jpg" class="final">
+        <img src="foto2.jpg" class="final">
+        <img src="foto3.jpg" class="final">
+        <img src="foto4.jpg" class="final">
     </div>
+</div>
 
-    <!-- CONTEÚDO -->
-    <div id="conteudo">
+<audio id="musica" src="penseemim.mp3" loop></audio>
 
-        <img src="foto1.jpg" class="foto-esq">
-        <img src="foto2.jpg" class="foto-dir">
+<script>
+/* TEXTO DIGITANDO */
+let mensagem = "Eu te amo minha princesa.";
+let i = 0;
 
-        <div class="texto">
-            <p>eu te amo minha princesa, muito muito.</p>
-            <p style="font-size:14px;">(site básico porque estou aprendendo 💜)</p>
-        </div>
+function digitar() {
+    if (i < mensagem.length) {
+        document.getElementById("texto").innerHTML += mensagem.charAt(i);
+        i++;
+        setTimeout(digitar, 120);
+    }
+}
 
-    </div>
+/* SLIDESHOW */
+let fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"];
+let indice = 0;
 
-    <script>
-        function mostrar() {
-            document.getElementById("inicio").style.display = "none";
-            document.getElementById("conteudo").style.display = "block";
+function trocarFoto() {
+    indice = (indice + 1) % fotos.length;
+    document.getElementById("foto").src = fotos[indice];
+}
 
-            // toca a música (só funciona depois do clique, regra do navegador)
-            document.getElementById("musica").play();
+function entrar() {
+    document.getElementById("capa").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
+    document.getElementById("musica").play();
+    digitar();
 
-            setInterval(criarCoracao, 500);
-        }
+    let slide = setInterval(trocarFoto, 3000);
 
-        function criarCoracao() {
-            var c = document.createElement("div");
-            c.className = "coracao";
-            c.innerHTML = "❤️";
-            c.style.left = Math.random() * 100 + "%";
+    setTimeout(() => {
+        clearInterval(slide);
+        document.getElementById("foto").style.display = "none";
+        document.getElementById("galeria").style.display = "block";
+    }, 15000);
 
-            document.body.appendChild(c);
-
-            setTimeout(function () {
-                c.remove();
-            }, 4000);
-        }
-    </script>
+    setInterval(() => {
+        let c = document.createElement("div");
+        c.className = "coracaoSubindo";
+        c.innerHTML = "💜";
+        c.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }, 300);
+}
+</script>
 
 </body>
 </html>
+
