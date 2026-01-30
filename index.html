@@ -8,8 +8,10 @@
         body {
             margin: 0;
             font-family: Arial;
-            text-align: center;
             overflow: hidden;
+            background-color: purple;
+            color: white;
+            text-align: center;
         }
 
         /* TELA INICIAL (NEYMAR) */
@@ -19,6 +21,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            z-index: 10;
         }
 
         #inicio img {
@@ -33,30 +36,45 @@
             transform: translateX(-50%);
             padding: 15px 30px;
             font-size: 18px;
+            cursor: pointer;
         }
 
         /* CONTEÚDO */
         #conteudo {
             display: none;
-            padding-top: 40px;
-        }
-
-        /* FOTOS */
-        .fotos {
+            width: 100vw;
+            height: 100vh;
             position: relative;
-            width: 250px;
-            margin: 30px auto;
         }
 
-        .fotos img {
-            width: 100%;
-            border-radius: 15px;
-        }
-
-        .foto2 {
+        /* FOTO ESQUERDA EM CIMA */
+        .foto-esq {
             position: absolute;
             top: 20px;
             left: 20px;
+            width: 45%;
+            border-radius: 15px;
+        }
+
+        /* FOTO DIREITA EM BAIXO */
+        .foto-dir {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 45%;
+            border-radius: 15px;
+        }
+
+        /* TEXTO NO MEIO */
+        .texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 22px;
         }
 
         /* CORAÇÕES */
@@ -82,7 +100,10 @@
 
 <body>
 
-    <!-- TELA COM NEYMAR -->
+    <!-- ÁUDIO -->
+    <audio id="musica" src="penseemim.mp3" loop></audio>
+
+    <!-- TELA NEYMAR -->
     <div id="inicio">
         <img src="botao.jpg">
         <button onclick="mostrar()">clica ai et</button>
@@ -91,13 +112,13 @@
     <!-- CONTEÚDO -->
     <div id="conteudo">
 
-        <div class="fotos">
-            <img src="foto1.jpg">
-            <img src="foto2.jpg" class="foto2">
-        </div>
+        <img src="foto1.jpg" class="foto-esq">
+        <img src="foto2.jpg" class="foto-dir">
 
-        <h2>eu te amo minha princesa, muito muito.</h2>
-        <p>(site básico porque estou aprendendo)</p>
+        <div class="texto">
+            <p>eu te amo minha princesa, muito muito.</p>
+            <p style="font-size:14px;">(site básico porque estou aprendendo 💜)</p>
+        </div>
 
     </div>
 
@@ -105,6 +126,8 @@
         function mostrar() {
             document.getElementById("inicio").style.display = "none";
             document.getElementById("conteudo").style.display = "block";
+
+            document.getElementById("musica").play();
 
             setInterval(criarCoracao, 500);
         }
