@@ -38,7 +38,25 @@
         /* CONTEÚDO */
         #conteudo {
             display: none;
-            padding-top: 50px;
+            padding-top: 40px;
+        }
+
+        /* FOTOS */
+        .fotos {
+            position: relative;
+            width: 250px;
+            margin: 30px auto;
+        }
+
+        .fotos img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .foto2 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
 
         /* CORAÇÕES */
@@ -72,8 +90,15 @@
 
     <!-- CONTEÚDO -->
     <div id="conteudo">
+
+        <div class="fotos">
+            <img src="foto1.jpg">
+            <img src="foto2.jpg" class="foto2">
+        </div>
+
         <h2>eu te amo minha princesa, muito muito.</h2>
         <p>(site básico porque estou aprendendo)</p>
+
     </div>
 
     <script>
@@ -81,10 +106,10 @@
             document.getElementById("inicio").style.display = "none";
             document.getElementById("conteudo").style.display = "block";
 
-            setInterval(coracao, 500);
+            setInterval(criarCoracao, 500);
         }
 
-        function coracao() {
+        function criarCoracao() {
             var c = document.createElement("div");
             c.className = "coracao";
             c.innerHTML = "❤️";
@@ -100,4 +125,3 @@
 
 </body>
 </html>
-
