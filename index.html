@@ -2,31 +2,102 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Site simples</title>
+    <title>Para minha princesa</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* TELA INICIAL (NEYMAR) */
+        #inicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #inicio img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #inicio button {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+
+        /* CONTEÚDO */
+        #conteudo {
+            display: none;
+            padding-top: 50px;
+        }
+
+        /* CORAÇÕES */
+        .coracao {
+            position: fixed;
+            bottom: 0;
+            font-size: 24px;
+            animation: subir 4s linear;
+        }
+
+        @keyframes subir {
+            from {
+                bottom: 0;
+                opacity: 1;
+            }
+            to {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h2>Meu primeiro site (estou aprendendo)</h2>
+    <!-- TELA COM NEYMAR -->
+    <div id="inicio">
+        <img src="botao.jpg">
+        <button onclick="mostrar()">clica ai et</button>
+    </div>
 
-    <!-- IMAGEM -->
-    <img src="imagem.jpg" width="300">
-
-    <br><br>
-
-    <!-- BOTÃO -->
-    <button onclick="mostrarMensagem()">
-        clica aqui
-    </button>
-
-    <p id="mensagem"></p>
+    <!-- CONTEÚDO -->
+    <div id="conteudo">
+        <h2>eu te amo minha princesa, muito muito.</h2>
+        <p>(site básico porque estou aprendendo)</p>
+    </div>
 
     <script>
-        function mostrarMensagem() {
-            document.getElementById("mensagem").innerHTML =
-            "eu te amo minha princesa, muito muito.";
+        function mostrar() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("conteudo").style.display = "block";
+
+            setInterval(coracao, 500);
+        }
+
+        function coracao() {
+            var c = document.createElement("div");
+            c.className = "coracao";
+            c.innerHTML = "❤️";
+            c.style.left = Math.random() * 100 + "vw";
+
+            document.body.appendChild(c);
+
+            setTimeout(function () {
+                c.remove();
+            }, 4000);
         }
     </script>
 
 </body>
 </html>
+
