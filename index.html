@@ -71,10 +71,10 @@ body {
     100% { transform: scale(1); }
 }
 
-/* FOTOS - PC */
+/* FOTOS (MAIORES) */
 .foto {
     position: absolute;
-    width: 48%;
+    width: 60%;
     border-radius: 20px;
     border: 6px solid white;
 }
@@ -84,49 +84,23 @@ body {
 .f3 { bottom: 140px; left: 20px; }
 .f4 { bottom: 140px; right: 20px; }
 
-/* 📱 CELULAR */
-@media (max-width: 768px) {
-
-    #texto {
-        font-size: 26px;
-        width: 90%;
-    }
-
-    .foto {
-        width: 85%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .f1 { top: 20px; }
-    .f2 { top: 200px; }
-    .f3 { top: 380px; }
-    .f4 { top: 560px; }
-
-    #botao {
-        bottom: 10px;
-        font-size: 22px;
-        padding: 16px 30px;
-    }
-
-    #coracao {
-        font-size: 70px;
-    }
-}
 </style>
 </head>
 
 <body>
 
+<!-- FOTOS -->
 <img src="foto1.jpg" class="foto f1">
 <img src="foto2.jpg" class="foto f2">
 <img src="foto3.jpg" class="foto f3">
 <img src="foto4.jpg" class="foto f4">
 
+<!-- TEXTO -->
 <div id="texto">
     Eu te amo muito muito minha princesa 💜
 </div>
 
+<!-- BOTÃO -->
 <div id="botao">
     <img src="botao.jpg">
     <div>CLICA AI ET</div>
@@ -135,4 +109,3 @@ body {
 
 </body>
 </html>
-
