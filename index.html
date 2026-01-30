@@ -17,30 +17,46 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 10;
 }
 
-#capa p {
-    color: white;
+#capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CONTEÚDO DA CAPA */
+#capaConteudo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#botao {
+    padding: 18px 40px;
     font-size: 26px;
+    background: hotpink;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
     margin-bottom: 20px;
 }
 
-/* CORAÇÃO PULSANDO */
+/* CORAÇÃO BRANCO PULSANDO */
 #coracao {
-    font-size: 80px;
+    font-size: 70px;
+    color: white;
     cursor: pointer;
     animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.25); }
     100% { transform: scale(1); }
 }
 
@@ -52,49 +68,31 @@ body {
     position: relative;
 }
 
-/* TEXTO DIGITANDO */
+/* TEXTO */
 #texto {
     position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     font-size: 30px;
+    text-align: center;
     z-index: 2;
 }
 
-/* FOTO SLIDESHOW */
-#foto {
+/* FOTOS */
+.foto {
     position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    border: 6px solid white;
-    box-shadow: 0 0 20px black;
-    border-radius: 10px;
-}
-
-/* GALERIA FINAL */
-#galeria {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.final {
     width: 40%;
-    position: absolute;
     border: 6px solid white;
     box-shadow: 0 0 20px black;
     border-radius: 10px;
 }
 
-.final:nth-child(1) { top: 20px; left: 20px; }
-.final:nth-child(2) { top: 80px; right: 20px; }
-.final:nth-child(3) { bottom: 80px; left: 20px; }
-.final:nth-child(4) { bottom: 20px; right: 20px; }
+.f1 { top: 10%; left: 10%; }
+.f2 { top: 10%; right: 10%; }
+.f3 { bottom: 10%; left: 10%; }
+.f4 { bottom: 10%; right: 10%; }
 
 /* CORAÇÕES SUBINDO */
 .coracaoSubindo {
@@ -115,61 +113,33 @@ body {
 
 <!-- CAPA -->
 <div id="capa">
-    <p>clica ai et 💜</p>
-    <div id="coracao" onclick="entrar()">💜</div>
+    <img src="botao.jpg">
+    <div id="capaConteudo">
+        <button id="botao" onclick="entrar()">CLICA AI ET</button><br>
+        <div id="coracao" onclick="entrar()">🤍</div>
+    </div>
 </div>
 
 <!-- CONTEÚDO -->
 <div id="conteudo">
-    <div id="texto"></div>
-
-    <img id="foto" src="foto1.jpg">
-
-    <div id="galeria">
-        <img src="foto1.jpg" class="final">
-        <img src="foto2.jpg" class="final">
-        <img src="foto3.jpg" class="final">
-        <img src="foto4.jpg" class="final">
+    <div id="texto">
+        Eu te amo minha princesa,<br>
+        muito muito 💜
     </div>
+
+    <img src="foto1.jpg" class="foto f1">
+    <img src="foto2.jpg" class="foto f2">
+    <img src="foto3.jpg" class="foto f3">
+    <img src="foto4.jpg" class="foto f4">
 </div>
 
 <audio id="musica" src="penseemim.mp3" loop></audio>
 
 <script>
-/* TEXTO DIGITANDO */
-let mensagem = "Eu te amo minha princesa.";
-let i = 0;
-
-function digitar() {
-    if (i < mensagem.length) {
-        document.getElementById("texto").innerHTML += mensagem.charAt(i);
-        i++;
-        setTimeout(digitar, 120);
-    }
-}
-
-/* SLIDESHOW */
-let fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"];
-let indice = 0;
-
-function trocarFoto() {
-    indice = (indice + 1) % fotos.length;
-    document.getElementById("foto").src = fotos[indice];
-}
-
 function entrar() {
     document.getElementById("capa").style.display = "none";
     document.getElementById("conteudo").style.display = "block";
     document.getElementById("musica").play();
-    digitar();
-
-    let slide = setInterval(trocarFoto, 3000);
-
-    setTimeout(() => {
-        clearInterval(slide);
-        document.getElementById("foto").style.display = "none";
-        document.getElementById("galeria").style.display = "block";
-    }, 15000);
 
     setInterval(() => {
         let c = document.createElement("div");
@@ -184,4 +154,3 @@ function entrar() {
 
 </body>
 </html>
-
