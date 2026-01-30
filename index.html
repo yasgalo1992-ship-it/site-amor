@@ -5,28 +5,34 @@
     <title>Para minha princesa</title>
 
     <style>
-        body {
+        html, body {
             margin: 0;
-            font-family: Arial;
-            overflow: hidden;
-            background-color: purple;
-            color: white;
-            text-align: center;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        /* TELA INICIAL (NEYMAR) */
+        body {
+            font-family: Arial;
+            background-color: purple;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* TELA NEYMAR */
         #inicio {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: 10;
         }
 
         #inicio img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         #inicio button {
@@ -42,9 +48,9 @@
         /* CONTEÚDO */
         #conteudo {
             display: none;
-            width: 100vw;
-            height: 100vh;
             position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         /* FOTO ESQUERDA EM CIMA */
@@ -52,7 +58,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 45%;
+            width: 48%;
             border-radius: 15px;
         }
 
@@ -61,7 +67,7 @@
             position: absolute;
             bottom: 20px;
             right: 20px;
-            width: 45%;
+            width: 48%;
             border-radius: 15px;
         }
 
@@ -71,27 +77,28 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.4);
-            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 25px;
             border-radius: 15px;
-            font-size: 22px;
+            font-size: 24px;
+            text-align: center;
         }
 
         /* CORAÇÕES */
         .coracao {
             position: fixed;
-            bottom: 0;
+            bottom: -20px;
             font-size: 24px;
             animation: subir 4s linear;
         }
 
         @keyframes subir {
             from {
-                bottom: 0;
+                bottom: -20px;
                 opacity: 1;
             }
             to {
-                bottom: 100vh;
+                bottom: 110%;
                 opacity: 0;
             }
         }
@@ -100,10 +107,10 @@
 
 <body>
 
-    <!-- ÁUDIO -->
+    <!-- MÚSICA -->
     <audio id="musica" src="penseemim.mp3" loop></audio>
 
-    <!-- TELA NEYMAR -->
+    <!-- TELA INICIAL -->
     <div id="inicio">
         <img src="botao.jpg">
         <button onclick="mostrar()">clica ai et</button>
@@ -127,6 +134,7 @@
             document.getElementById("inicio").style.display = "none";
             document.getElementById("conteudo").style.display = "block";
 
+            // toca a música (só funciona depois do clique, regra do navegador)
             document.getElementById("musica").play();
 
             setInterval(criarCoracao, 500);
@@ -136,7 +144,7 @@
             var c = document.createElement("div");
             c.className = "coracao";
             c.innerHTML = "❤️";
-            c.style.left = Math.random() * 100 + "vw";
+            c.style.left = Math.random() * 100 + "%";
 
             document.body.appendChild(c);
 
