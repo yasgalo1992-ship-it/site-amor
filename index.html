@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Para você ❤️</title>
+
+    <style>
+        body {
+            background-color: pink;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        #conteudo {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .fotos {
+            position: relative;
+            width: 220px;
+            margin: auto;
+        }
+
+        .fotos img {
+            width: 200px;
+            border-radius: 15px;
+        }
+
+        .foto2 {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+        }
+
+        .botao-img {
+            width: 250px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Clica aí 😌</h1>
+
+    <!-- imagem que funciona como botão -->
+    <img src="botao.jpg" class="botao-img" onclick="mostrar()">
+
+    <div id="conteudo">
+        <div class="fotos">
+            <img src="foto1.jpg">
+            <img src="foto2.jpg" class="foto2">
+        </div>
+
+        <p style="font-size: 22px;">
+            eu te amo minha princesa, muito muito.
+        </p>
+    </div>
+
+    <script>
+        function mostrar() {
+            document.getElementById("conteudo").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
+
+
